@@ -13,6 +13,7 @@ const Home = () => {
       <div className={`slantedA ${day ? "slantedDay" : " "} relative `}>
         <Navbar
           day={day}
+          css={`text-white `}
           setDay={setDay}
           navActive={navActive}
           setNavActive={setNavActive}

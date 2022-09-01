@@ -10,7 +10,7 @@ const SiteAuthor = ({ activeX, setactiveX }) => {
       // onMouseLeave={() => setactiveX(!activeX)}
       className={`byAuthor flex flex-row items-center px-2  ${
         activeX
-          ? " fixed py bg-gray-800 top-0 justify-center items-center left-0 w-full px-20 z-50"
+          ? " fixed py-4 bg-gray-800 top-0 justify-center items-center left-0 w-full px-20 z-50"
           : "relative opacity-80  "
       }`}
     >

@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const HomeAndMenuButton = ({ text, css }) => {
+const HomeAndMenuButton = ({ text, css, to }) => {
   return (
     <span className={`${css}`}>
-      <NavLink to={`/`}>{text}</NavLink>
+      <NavLink to={to}>{text}</NavLink>
     </span>
   );
 };

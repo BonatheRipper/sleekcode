@@ -1,6 +1,6 @@
 import React from "react";
 import { WiDaySunny } from "react-icons/wi";
-import { MdModeNight } from "react-icons/md";
+import { CgDarkMode } from "react-icons/cg";
 
 const DayAndNight = ({ day, setDay }) => {
   return (
@@ -14,7 +14,7 @@ const DayAndNight = ({ day, setDay }) => {
         </span>
       ) : (
         <span className={`${!day ? "text-black" : ""}`}>
-          <MdModeNight />
+          <CgDarkMode />
         </span>
       )}
     </div>
