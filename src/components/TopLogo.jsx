@@ -1,6 +1,8 @@
 import React from "react";
 import { IoIosAperture } from "react-icons/io";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { ImCancelCircle } from "react-icons/im";
+
 import { NavLink } from "react-router-dom";
 
 const TopLogo = ({ day, navActive, setNavActive }) => {
@@ -12,7 +14,7 @@ const TopLogo = ({ day, navActive, setNavActive }) => {
           day ? "text-black" : "text-white"
         } mr-6 text-2xl md:hidden`}
       >
-        <HiOutlineMenuAlt2 />
+        {navActive ? <ImCancelCircle /> : <HiOutlineMenuAlt2 />}
       </span>
       <NavLink to={`/`} className="flex flex-row ">
         <span className={`${day ? "text-black" : "text-white"} mr-2 text-2xl`}>
