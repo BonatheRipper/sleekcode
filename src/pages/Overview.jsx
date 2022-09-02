@@ -30,7 +30,14 @@ const Overview = ({}) => {
           className="w-full  h-screen flex justify-center py-12 "
         >
           <OverViewTopText />
-          <div id="LangaugesActive" className=""></div>
+          <div id="LangaugesActive" className="flex flex-col">
+            <div className="Circles">
+              <div className="outerCircle">
+                {" "}
+                <div className="innerCircle"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

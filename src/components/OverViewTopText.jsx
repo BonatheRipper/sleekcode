@@ -5,9 +5,13 @@ import algoLogo from "../images/algoLogo.png";
 const OverViewTopText = () => {
   return (
     <div id="overViewTopText" className="topLogo flex flex-col items-center">
-      <img src={algoLogo} alt="algoLogo" className="md:w-28 w-24" />
+      <img
+        src={algoLogo}
+        alt="algoLogo "
+        className="md:w-28 w-24 rotateOverViewImage  rounded-full p-2"
+      />
       <h1 className="py-4 md:text-2xl text-lg">Multiple Algorithm Solutions</h1>
-      <p className="md:py-3 md:w-6/12 px-4">
+      <p className="md:py-3 md:w-8/12 px-4 md:px-0">
         <span>
           <FcIdea />
         </span>{" "}

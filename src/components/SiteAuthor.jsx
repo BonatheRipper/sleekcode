@@ -26,7 +26,7 @@ const SiteAuthor = ({ activeX, setactiveX }) => {
         } md:flex slide_in  px-2 md:flex-row`}
       >
         <div className="author  ">
-          <span className="underline">Bonatheripper</span>
+          <span className="underline">Sleekcode</span>
         </div>
         <div className="flex flex-row items-center text-xs justify-evenly">
           <div className="flex items-center">

@@ -14,7 +14,7 @@ function Navbar({ day, setDay, navActive, setNavActive, css }) {
     <div
       id="navBar"
       className={` fixed ${css} ${
-        !day ? "opacity-40" : ""
+        !day ? "opacity-40 border-b border-gray-600" : ""
       }  m-0  z-50 py-2 pt-4 flex relative flex-row items-center px-4  w-full justify-between`}
     >
       <div className="rightNavItems flex items-center md:ml-40 ">
