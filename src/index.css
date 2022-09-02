@@ -93,3 +93,63 @@ body,
     transform: rotate(359deg);
   }
 }
+.outerCircle {
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px rgba(0, 0, 0, 0.15);
+}
+.innerCircle {
+  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 6px -1px rgba(0, 0, 0, 0.2),
+    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+    0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+}
+
+.counter {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 13px;
+  stroke-dasharray: 290;
+  stroke-dashoffset: 290;
+  position: absolute;
+}
+.counter1 {
+  animation: progressBar 2s linear forwards;
+}
+@keyframes progressBar {
+  100% {
+    stroke-dashoffset: 130;
+  }
+}
+.counter2 {
+  animation: progressBar2 2s linear forwards;
+}
+@keyframes progressBar2 {
+  100% {
+    stroke-dashoffset: 180;
+  }
+}
+
+.counter3 {
+  animation: counter3 2s linear forwards;
+}
+@keyframes counter3 {
+  100% {
+    stroke-dashoffset: 198;
+  }
+}
+.counter4 {
+  animation: counter4 2s linear forwards;
+}
+@keyframes counter4 {
+  100% {
+    stroke-dashoffset: 145;
+  }
+}
+.counter5 {
+  animation: counter5 2s linear forwards;
+}
+@keyframes counter5 {
+  100% {
+    stroke-dashoffset: 170;
+  }
+}
