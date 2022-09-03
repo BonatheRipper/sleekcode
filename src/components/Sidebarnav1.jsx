@@ -9,7 +9,7 @@ const Sidebarnav1 = ({ day, css }) => {
         day ? "bg-gray-100 " : "bg-gray-600 "
       } ${css} h-full opacity-100 z-40 fixed  flex flex-col`}
     >
-      <h1 className="flex justify-center my-8 text-1xl font-bold uppercase mx-4">
+      <h1 className="flex justify-center my-8 text-xs text-center mdtext-1xl font-bold uppercase mx-4">
         Algorithm Solution
       </h1>
       <HomeAndMenuButton

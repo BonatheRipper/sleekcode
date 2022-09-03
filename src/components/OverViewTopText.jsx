@@ -22,9 +22,11 @@ const OverViewTopText = () => {
         >
           Algo problems{" "}
         </a>
-        in Javascript, C++, Java, and Python. This repository aims to provide
-        code with good readability and consistent style over various topics and
-        embraces new standards.
+        in Javascript, C++, Java, and Python. This is/was a personal project to
+        help me browse through interviews problmes faster and more efficiently
+        as i study to get a job in a big/good company abroad... I hope it also
+        help others in future... below you will find Languages we currently have
+        solutions to.
       </p>
     </div>
   );

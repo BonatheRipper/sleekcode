@@ -10,11 +10,11 @@ const DayAndNight = ({ day, setDay }) => {
     >
       {day ? (
         <span>
-          <WiDaySunny />
+          <CgDarkMode />
         </span>
       ) : (
-        <span className={`${!day ? "text-black" : ""}`}>
-          <CgDarkMode />
+        <span className={`${!day ? "" : ""}`}>
+          <WiDaySunny />
         </span>
       )}
     </div>

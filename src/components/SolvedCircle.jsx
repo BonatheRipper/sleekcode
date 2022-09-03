@@ -13,7 +13,7 @@ const SolvedCircle = ({
   langType,
 }) => {
   return (
-    <div className="solved flex flex-col justify-center items-center  w-full">
+    <div className="solved flex flex-col justify-center items-center   w-full">
       <div className="Circles relative my-4 px-4 md:mx-8">
         <div
           className={`outerCircle flex items-center justify-center ${cssOne}  rounded-full border    ${
@@ -55,7 +55,7 @@ const SolvedCircle = ({
           />
         </svg>
       </div>
-      <div className=" flex justify-center items-center">{langType}</div>
+      <div className=" flex justify-center items-center ">{langType}</div>
     </div>
   );
 };
