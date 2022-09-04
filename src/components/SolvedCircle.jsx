@@ -42,8 +42,8 @@ const SolvedCircle = ({
         >
           <defs>
             <linearGradient id="GradientColor">
-              <stop offset="0%" stop-color="#e91e63" />
-              <stop offset="100%" stop-color="#673ab7" />
+              <stop offset="0%" stopColor="#e91e63" />
+              <stop offset="100%" stopColor="#673ab7" />
             </linearGradient>
           </defs>
           <circle
@@ -51,7 +51,7 @@ const SolvedCircle = ({
             cx={cx}
             cy={cy}
             r={r}
-            stroke-linecap="round"
+            strokeLinecap="round"
           />
         </svg>
       </div>

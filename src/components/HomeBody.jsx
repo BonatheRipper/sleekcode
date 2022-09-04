@@ -3,15 +3,15 @@ import { DiJavascript } from "react-icons/di";
 import { FaPython } from "react-icons/fa";
 import { SiJava } from "react-icons/si";
 import { CgCPlusPlus } from "react-icons/cg";
-import HomeAndMenuButton from "./HomeAndMenuButton";
+import { HomeAndMenuButton } from "./HomeAndMenuButton";
 const HomeBody = ({ day }) => {
   return (
     <div
-      className="w-full h-80  md:px-40  absolute md:top-64 z-40"
+      className="w-full h-80  md:px-40 top-10  absolute md:top-64 z-40"
       // style={{ top: "5" }}
     >
       <div className="flex md:flex-row flex-col-reverse	 w-full md:justify-between justify-center">
-        <div className="flex flex-col top-12 absolute md:mb-20 md:relative justify-center w-full  md:items-start fontOs ">
+        <div className="flex flex-col z-50 top-12 absolute md:mb-20 md:relative justify-center w-full  md:items-start fontOs ">
           <p
             style={{ fontSize: "28px", fontWeight: 900 }}
             className={` ${
@@ -26,7 +26,7 @@ const HomeBody = ({ day }) => {
           >
             <p className="Farsan px-4">
               Solutions
-              <span className="text-gray-600 Farsan font-bold ">
+              <span className="text-gray-400 Farsan font-bold ">
                 {" "}
                 Available in
               </span>
@@ -73,20 +73,20 @@ const HomeBody = ({ day }) => {
               <HomeAndMenuButton
                 text={"Quick Guide"}
                 to={`/overview`}
-                css={`px-6 py-2 text-black border-gray-400 border flex justify-center items-center mr-4 rounded-full bg-white font-mono hover:bg-cyan-500 hover:text-white`}
+                css={`px-6 py-2 hover:animate-pulse  text-black border-gray-400 border flex justify-center items-center mr-4 rounded-full bg-white font-mono hover:bg-cyan-500 hover:text-white`}
               />
               <HomeAndMenuButton
                 text={"Get Solutions"}
                 to={`/`}
-                css={`px-6 py-2 flex justify-center items-center text-sm mr-4 rounded-full hover:bg-white font-mono bg-cyan-500 text-white hover:text-black`}
+                css={`px-6 py-2 hover:animate-pulse flex justify-center items-center text-sm mr-4 rounded-full hover:bg-white font-mono bg-cyan-500 text-white hover:text-black`}
               />
             </div>
           </div>
         </div>
-        <div className="headerIMG fixed -bottom-14 -z-0 md:relative">
+        <div className="headerIMG fixed -bottom-14 z-0 md:relative">
           <img
-            src="https://arcticdata.io/wp-content/uploads/open-source.png"
-            className="w-full h-full"
+            src="https://arcticdata.io/wp-content/uploads/open-source.png "
+            className="w-full h-full "
             alt="topImg"
           />
         </div>

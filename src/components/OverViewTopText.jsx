@@ -8,10 +8,12 @@ const OverViewTopText = () => {
       <img
         src={algoLogo}
         alt="algoLogo "
-        className="md:w-28 w-24 rotateOverViewImage  rounded-full p-2"
+        className="md:w-28 w-24 h-24 md:h-auto rotateOverViewImage  rounded-full "
       />
-      <h1 className="py-4 md:text-2xl text-lg">Multiple Algorithm Solutions</h1>
-      <p className="md:py-3 md:w-8/12 px-4 md:px-0">
+      <h1 className="py-4 md:text-2xl text-lg Grotesk">
+        Multiple Algorithm Solutions
+      </h1>
+      <p className="md:py-3 md:w-11/12 px-4 md:px-0 ">
         <span>
           <FcIdea />
         </span>{" "}

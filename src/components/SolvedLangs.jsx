@@ -4,8 +4,8 @@ export function LangType1({ total1, total2 }) {
   return (
     <p className="my-2">
       <span className="font-bold ">Total Solved Questions : </span>
-      <span className="border px-2 bg-gray-900 rounded-md text-gray-300 text-lg">
-        {total1}/{total2}
+      <span className=" border-x border-red-300 px-4 md:py-1 shadow-lg rounded-md text-gray-500 text-lg">
+        {total1 && total1.slice(0, -1)}/{total2 && total2.slice(0, -1)}
       </span>
     </p>
   );

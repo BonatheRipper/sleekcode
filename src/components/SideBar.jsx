@@ -1,8 +1,9 @@
 import React from "react";
-import HomeAndMenuButton from "./HomeAndMenuButton";
+import { HomeAndMenuButton } from "./HomeAndMenuButton";
 import Sidebarnav1 from "./Sidebarnav1";
-
-const SideBar = ({ navActive, day, setNavActive }) => {
+import { useGlobalContext } from "../utils/GlobalContext";
+const SideBar = ({ day }) => {
+  const { navActive, setNavActive } = useGlobalContext();
   return (
     <div
       className={`fixed w-full h-full  z-50   ${

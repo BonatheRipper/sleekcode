@@ -7,15 +7,15 @@ import SearchBar from "./SearchBar";
 import SiteAuthor from "./SiteAuthor";
 import TopLogo from "./TopLogo";
 
-function Navbar({ day, setDay, navActive, setNavActive, css }) {
+const Navbar = ({ day, setDay, navActive, setNavActive, css }) => {
   const [activeX, setactiveX] = useState(false);
 
   return (
     <div
       id="navBar"
-      className={` fixed ${css} ${
-        !day ? "opacity-40 border-b border-gray-600" : ""
-      }  m-0  z-50 py-2 pt-4 flex relative flex-row items-center px-4  w-full justify-between`}
+      className={`bg-none navBar  fixed ${css} ${
+        !day ? "opacity-90 border-b border-gray-600 text-white" : ""
+      }  m-0 z-50  py-2 pt-4 flex  flex-row items-center px-4  w-full justify-between`}
     >
       <div className="rightNavItems flex items-center md:ml-40 ">
         <TopLogo day={day} navActive={navActive} setNavActive={setNavActive} />
@@ -27,6 +27,6 @@ function Navbar({ day, setDay, navActive, setNavActive, css }) {
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;
