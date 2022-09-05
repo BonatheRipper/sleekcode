@@ -5,18 +5,32 @@ import { ImCancelCircle } from "react-icons/im";
 
 import { useGlobalContext } from "../utils/GlobalContext";
 export const HomeAndMenuButton = ({ text, css, to, click }) => {
-  const { problemsBtn } = useGlobalContext();
+  const { problemsBtn, day } = useGlobalContext();
 
   return (
-    <span onClick={click} className={`${css} flex justify-between `}>
+    <span
+      onClick={click}
+      className={`${css} flex justify-between ${
+        day
+          ? "bg-white border border-gray-200"
+          : "border-y border-gray-700 text-white"
+      }`}
+    >
       <NavLink to={to}>{text}</NavLink>
     </span>
   );
 };
 export const ProblemsButton = ({ text, css, to, click }) => {
+  const { day } = useGlobalContext();
+
   return (
-    <span onClick={click} className={`${css} `}>
-      <button to={to} className="flex justify-between w-full items-center">
+    <span onClick={click} className={`${css} bg-cyan-500 `}>
+      <button
+        to={to}
+        className={`${
+          day ? "text-white" : ""
+        } flex justify-between w-full bg-cyan-500  items-center`}
+      >
         <span className=" ">{text}</span>
         {useGlobalContext().problemsBtn.isActive ? (
           <ImCancelCircle />

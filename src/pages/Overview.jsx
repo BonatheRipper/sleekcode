@@ -88,7 +88,7 @@ const Overview = ({}) => {
     <div
       className={` main relative w-full ${
         !day ? "mainNight text-white  " : ""
-      } relative  h-screen`}
+      } relative  h-screen  `}
     >
       <SideBar day={day} navActive={navActive} setNavActive={setNavActive} />
       <Sidebarnav1 day={day} css={` w-2/12  hidden md:block py-20 `} />
