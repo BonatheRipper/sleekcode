@@ -192,3 +192,6 @@ body,
     rgba(183, 182, 190, 1) 100%
   );
 }
+.bilbo {
+  font-family: "Bilbo Swash Caps", cursive;
+}

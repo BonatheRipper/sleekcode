@@ -9,16 +9,16 @@ import Sidebarnav1 from "../components/Sidebarnav1";
 import SolvedCircle from "../components/SolvedCircle";
 import { LangType1, LangType2 } from "../components/SolvedLangs";
 import { TbBrandJavascript, TbDetails } from "react-icons/tb";
-import { SiJava, SiPrisma } from "react-icons/si";
-import { TbBrandPython } from "react-icons/tb";
-import { CgCPlusPlus } from "react-icons/cg";
-import { DiMitlicence } from "react-icons/di";
-import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
+import { SiJava, SiVisualstudiocode } from "react-icons/si";
+import { TbCodeMinus } from "react-icons/tb";
+import { RiTimerLine } from "react-icons/ri";
+import { MdAccessTimeFilled, MdWorkspacesOutline } from "react-icons/md";
+import { FcIdea } from "react-icons/fc";
 
 import {
   BsPatchQuestion,
-  BsArrowLeftSquareFill,
-  BsCodeSlash,
+  BsLayoutTextSidebarReverse,
+  BsCheckCircleFill,
 } from "react-icons/bs";
 import { useGlobalContext } from "../utils/GlobalContext";
 import TopLogo from "../components/TopLogo";
@@ -26,49 +26,22 @@ import BottomQuestionNav from "../components/BottomQuestionNav";
 const ProblemsPage = ({}) => {
   const { day, setNavcss, attheBottom } = useGlobalContext();
   const [navActive, navBack, setNavActive] = useState(false);
+  const [options, setOptions] = useState("description");
 
-  const [counters, setCounters] = useState({
-    counter1: 0,
-    counter2: 0,
-    counter3: 0,
-    counter4: 0,
-    counter5: 0,
-  });
-  const [total, setTotal] = useState({
-    total1: 0,
-    total2: 0,
-  });
-
-  const progressBarCounter = (num, speed, counterSet, counterType) => {
-    var counter = 0;
-    setInterval(() => {
-      if (counter === num) {
-        clearInterval();
-      } else {
-        counter++;
-        counterSet((prev) => ({ ...prev, [counterType]: `${counter}%` }));
-      }
-    }, speed);
+  const handleOptionsClick = (e) => {
+    setOptions(e.target.id);
   };
-  useEffect(() => {
-    progressBarCounter(75, 20, setCounters, "counter1");
-    progressBarCounter(70, 20, setCounters, "counter2");
-    progressBarCounter(65, 20, setCounters, "counter3");
-    progressBarCounter(90, 20, setCounters, "counter4");
-    progressBarCounter(77, 20, setCounters, "counter5");
-    progressBarCounter(1288, 1, setTotal, "total1");
-    progressBarCounter(2000, 1, setTotal, "total2");
-    if (day) {
-      setNavcss("bg-white");
-    }
-    if (navBack && !day) {
-      setNavcss("bg-gray-900");
-    }
-  }, [day, navBack]);
-
-  const { counter1, counter2, counter3, counter4, counter5 } = counters;
-  const { total1, total2 } = total;
-
+  const optionsSecondaryStyle = (item) => {
+    return `${
+      options === item
+        ? `${
+            day
+              ? "border-t border-x  border-gray-300  "
+              : "bg-gray-900 text-gray-300"
+          } `
+        : ""
+    }`;
+  };
   return (
     <div
       className={` main relative w-full ${
@@ -86,33 +59,123 @@ const ProblemsPage = ({}) => {
             {" "}
             <div className="question flex flex-row text-2xl md:text-3xl ">
               <span className="">1. </span>
-              <span className="font-bold mx-2">Two Sum </span>
+              <span className="  mx-2">Two Sum </span>
             </div>
             <div
               className={`${
-                !day ? "bg-green-800" : "bg-green-600"
-              } text-gray-100  rounded md:px-8 px-6 my-4 md:py-2  py-1 difficulty`}
+                !day ? "text-green-800" : "text-green-600"
+              } text-gray-100  rounded md:px-8 px-6 my-1 md:py-2  py-1 font-extrabold difficulty`}
             >
-              <h5 className="mx-2"> EASY</h5>
+              <h5 className="mx-2"> Easy</h5>
             </div>
-            <div className="container flex flex-col md:flex-row justify-center items-center my-4  w-full">
-              <div className="border-b border-green-500 w-full md:w-6/12 h-56  my-2">
-                <div className="options flex flex-row  rounded-t-full items-center ">
-                  <div className="select w-4/12 flex rounded-t-sm md:flex-row  flex-col justify-center items-center border border-gray-500  py-4 px-2 text-sm">
-                    <span>*</span>
-                    <span>Description</span>
+            <div
+              className={`${
+                !day ? "text-gray-300" : "text-white"
+              }  flex flex-row rounded md:px-8  my-2 md:py-2  py-1 text-xs difficulty`}
+            >
+              <span className="px-8 border bg-cyan-800 mx-0 rounded-xl ">
+                {" "}
+                Array
+              </span>
+              <span className="px-8 border bg-gray-800 mx-0  rounded-xl ">
+                {" "}
+                Hash Table
+              </span>
+            </div>
+            <div
+              className={`${
+                !day ? "text-gray-300" : ""
+              }  flex flex-col  rounded md:px-8  my-2 md:py-2  py-1 text-xs difficulty`}
+            >
+              <div className="flex flex-row px-2 items-center">
+                {" "}
+                <span className=" text-xl text-red-700">
+                  {" "}
+                  <RiTimerLine />
+                </span>
+                <span className=" text-base px-2 font-bold"> Time </span>
+                <span className="  px-1 text-xl font-thin tangerine">
+                  {" "}
+                  O(n){" "}
+                </span>
+              </div>
+              <div className="flex flex-row px-2 items-center">
+                {" "}
+                <span className=" text-xl text-purple-700">
+                  {" "}
+                  <MdWorkspacesOutline />
+                </span>
+                <span className=" text-base px-2 font-bold"> Space </span>
+                <span className="  px-1 text-xl font-thin tangerine">
+                  {" "}
+                  O(n){" "}
+                </span>
+              </div>
+            </div>
+            <div className="container flex flex-col md:flex-row justify-center items-center my-6 w-full">
+              <div className="border-b w-full md:w-6/12   my-2">
+                <div
+                  className={`options ${
+                    day ? " border-gray-300 " : "border-gray-600"
+                  } flex flex-row justify-between rounded-t-full items-end border-b`}
+                >
+                  <div
+                    onClick={(e) => setOptions("description")}
+                    id="description"
+                    className={`select ${optionsSecondaryStyle(
+                      "description"
+                    )} flex rounded-t-sm    flex-col justify-center items-center  py-2   w-4/12 mx-1 text-sm`}
+                  >
+                    <span className="px-2  text-xl text-purple-800 ">
+                      <TbCodeMinus />
+                    </span>
+                    <span className="">Description</span>
                   </div>
-                  <div className="select w-4/12 flex rounded-t-sm md:flex-row  flex-col justify-center items-center border border-gray-500  py-4 px-2 text-sm">
-                    <span>*</span>
+                  <div
+                    id="solution"
+                    onClick={(e) => setOptions("solution")}
+                    className={`select  ${optionsSecondaryStyle(
+                      "solution"
+                    )}  flex rounded-t-sm   flex-col justify-center items-center py-2  w-4/12 mx-1 text-sm`}
+                  >
+                    <span className="px-2  text-lg  ">
+                      <FcIdea />
+                    </span>
                     <span>Solution</span>
                   </div>
-                  <div className="select  w-4/12 flex rounded-t-sm md:flex-row  flex-col justify-center items-center border border-gray-500  py-4 px-2 text-sm">
-                    <span>*</span>
-                    <span>Submition</span>
+                  <div
+                    id="submissions"
+                    onClick={(e) => setOptions("submissions")}
+                    className={`select ${optionsSecondaryStyle(
+                      "submissions"
+                    )} flex rounded-t-sm   flex-col justify-center items-center py-2   w-4/12 mx-1 text-sm`}
+                  >
+                    <span className="px-2  text-lg text-blue-800 ">
+                      <SiVisualstudiocode />
+                    </span>
+                    <span>Submissions</span>
                   </div>
                 </div>
+                <div className="questionBox px-4 my-4 text-sm 	">
+                  {" "}
+                  <p className="leading-loose text-gray-600 font-thin">
+                    You are given two strings s and p where p is a subsequence
+                    of s. You are also given a distinct 0-indexed integer array
+                    removable containing a subset of indices of s (s is also
+                    0-indexed). You want to choose an integer k such that, after
+                    removing k characters from s using the first k indices in
+                    removable, p is still a subsequence of s. More formally, you
+                    will mark the character at s[removable[i]] then remove all
+                    marked characters and check if p is still a subsequence.
+                    Return the maximum k you can choose such that p is still a
+                    subsequence of s after the removals. A subsequence of a
+                    string is a new string generated from the original string
+                    with some characters (can be none) deleted without changing
+                    the relative order of the remaining characters.
+                  </p>
+                </div>
               </div>
-              <div className="border border-red-500 w-full md:w-6/12 h-56 mx-2 my-2"></div>
+              <div className="border border-red-500 w-full md:w-6/12 h-56  my-2"></div>
             </div>
           </div>
         </div>
