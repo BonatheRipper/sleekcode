@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Overview from "./pages/Overview";
 import { useGlobalContext } from "./utils/GlobalContext";
 import Navbar from "./components/Navbar";
+import ProblemsPage from "./pages/QuestionPage";
 const App = () => {
   const { day, setDay, navActive, navBack, navCss, setNavActive } =
     useGlobalContext();
@@ -22,6 +23,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/overview" element={<Overview />} />
+        <Route path="/problems/:questionId" element={<ProblemsPage />} />
       </Routes>
     </BrowserRouter>
   );

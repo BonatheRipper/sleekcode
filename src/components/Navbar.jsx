@@ -14,7 +14,7 @@ const Navbar = ({ day, setDay, navActive, setNavActive, css }) => {
     <div
       id="navBar"
       className={`bg-none navBar  fixed ${css} ${
-        !day ? "opacity-90 border-b border-gray-600 text-white" : ""
+        !day ? "opacity-90 border-b border-gray-600 text-white" : " border-b "
       }  m-0 z-50  py-2 pt-4 flex  flex-row items-center px-4  w-full justify-between`}
     >
       <div className="rightNavItems flex items-center md:ml-40 ">

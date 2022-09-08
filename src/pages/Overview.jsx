@@ -1,8 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import OverviewTable from "../components/OverviewTable";
+
 import OverViewTopText from "../components/OverViewTopText";
 import SideBar from "../components/SideBar";
 import Sidebarnav1 from "../components/Sidebarnav1";
@@ -13,7 +12,6 @@ import { SiJava, SiPrisma } from "react-icons/si";
 import { TbBrandPython } from "react-icons/tb";
 import { CgCPlusPlus } from "react-icons/cg";
 import { DiMitlicence } from "react-icons/di";
-import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
 
 import {
   BsPatchQuestion,
@@ -88,7 +86,7 @@ const Overview = ({}) => {
     <div
       className={` main relative w-full ${
         !day ? "mainNight text-white  " : ""
-      } relative  h-screen  `}
+      } relative  h-screen `}
     >
       <SideBar day={day} navActive={navActive} setNavActive={setNavActive} />
       <Sidebarnav1 day={day} css={` w-2/12  hidden md:block py-20 `} />
@@ -101,9 +99,9 @@ const Overview = ({}) => {
           >
             <OverViewTopText />
             <div
-              id={` ${
+              className={` ${
                 !day ? "mainNight text-white " : ""
-              } LangaugesActive" className="flex flex-col my-3 h-auto`}
+              } LangaugesActive flex flex-col my-3 h-auto overflow-hidden`}
             >
               <SolvedCircle
                 cssOne={` h-20 w-20 `}
@@ -116,7 +114,7 @@ const Overview = ({}) => {
                 counter={`counter1`}
                 langType={<LangType1 total1={total1} total2={total2} />}
               />
-              <div className="flex ">
+              <div className="flex  flex-row justify-center items-center w-full">
                 <SolvedCircle
                   cssOne={` h-16 w-16 `}
                   cssTwo={`h-12 w-12`}
@@ -235,7 +233,7 @@ const Overview = ({}) => {
           </div>
         </div>
       </div>
-      <BottomQuestionNav />
+      {/* <BottomQuestionNav /> */}
     </div>
   );
 };

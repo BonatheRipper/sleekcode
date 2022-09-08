@@ -23,7 +23,7 @@ import {
 import { useGlobalContext } from "../utils/GlobalContext";
 import TopLogo from "../components/TopLogo";
 import BottomQuestionNav from "../components/BottomQuestionNav";
-const QuestionPage = ({}) => {
+const ProblemsPage = ({}) => {
   const { day, setNavcss, attheBottom } = useGlobalContext();
   const [navActive, navBack, setNavActive] = useState(false);
 
@@ -79,143 +79,40 @@ const QuestionPage = ({}) => {
       <Sidebarnav1 day={day} css={` w-2/12  hidden md:block py-20 `} />
       <div className={`w-full md:flex justify-end ${!day ? "mainNight" : ""}`}>
         <div className={`relative md:w-10/12  flex justify-center flex-col`}>
-          {/* <OverviewTable /> */}
           <div
             id="overviewContent "
-            className="w-full  flex flex-col items-center py-12 my-8"
+            className="w-full  flex flex-col  py-12 my-8 justify-start items-start"
           >
-            <OverViewTopText />
+            {" "}
+            <div className="question flex flex-row text-2xl md:text-3xl ">
+              <span className="">1. </span>
+              <span className="font-bold mx-2">Two Sum </span>
+            </div>
             <div
-              id={` ${
-                !day ? "mainNight text-white " : ""
-              } LangaugesActive" className="flex flex-col my-3 h-auto`}
+              className={`${
+                !day ? "bg-green-800" : "bg-green-600"
+              } text-gray-100  rounded md:px-8 px-6 my-4 md:py-2  py-1 difficulty`}
             >
-              <SolvedCircle
-                cssOne={` h-20 w-20 `}
-                cssTwo={`h-16 w-16`}
-                counter1={counter1}
-                day={day}
-                cx="40"
-                cy="40"
-                r="33"
-                counter={`counter1`}
-                langType={<LangType1 total1={total1} total2={total2} />}
-              />
-              <div className="flex ">
-                <SolvedCircle
-                  cssOne={` h-16 w-16 `}
-                  cssTwo={`h-12 w-12`}
-                  counter1={counter2}
-                  day={day}
-                  cx="32"
-                  cy="32"
-                  r="26"
-                  textCss="text-xs"
-                  counter={`counter2`}
-                  langType={
-                    <LangType2
-                      icon={<TbBrandJavascript />}
-                      css={`text-red-900`}
-                    />
-                  }
-                />
-                <SolvedCircle
-                  cssOne={` h-16 w-16 `}
-                  cssTwo={`h-12 w-12`}
-                  counter1={counter3}
-                  day={day}
-                  cx="32"
-                  cy="32"
-                  r="26"
-                  textCss="text-xs"
-                  counter={`counter3`}
-                  langType={
-                    <LangType2 icon={<SiJava />} css={`text-yellow-800`} />
-                  }
-                />
-                <SolvedCircle
-                  cssOne={` h-16 w-16 `}
-                  cssTwo={`h-12 w-12`}
-                  counter1={counter4}
-                  day={day}
-                  cx="32"
-                  cy="32"
-                  r="26"
-                  textCss="text-xs"
-                  counter={`counter4`}
-                  langType={
-                    <LangType2
-                      icon={<TbBrandPython />}
-                      css={`text-green-900`}
-                    />
-                  }
-                />
-                <SolvedCircle
-                  cssOne={` h-16 w-16 `}
-                  cssTwo={`h-12 w-12`}
-                  counter1={counter5}
-                  day={day}
-                  cx="32"
-                  cy="32"
-                  r="26"
-                  textCss="text-xs"
-                  counter={`counter5`}
-                  langType={
-                    <LangType2 icon={<CgCPlusPlus />} css={`text-orange-900`} />
-                  }
-                />
+              <h5 className="mx-2"> EASY</h5>
+            </div>
+            <div className="container flex flex-col md:flex-row justify-center items-center my-4  w-full">
+              <div className="border-b border-green-500 w-full md:w-6/12 h-56  my-2">
+                <div className="options flex flex-row  rounded-t-full items-center ">
+                  <div className="select w-4/12 flex rounded-t-sm md:flex-row  flex-col justify-center items-center border border-gray-500  py-4 px-2 text-sm">
+                    <span>*</span>
+                    <span>Description</span>
+                  </div>
+                  <div className="select w-4/12 flex rounded-t-sm md:flex-row  flex-col justify-center items-center border border-gray-500  py-4 px-2 text-sm">
+                    <span>*</span>
+                    <span>Solution</span>
+                  </div>
+                  <div className="select  w-4/12 flex rounded-t-sm md:flex-row  flex-col justify-center items-center border border-gray-500  py-4 px-2 text-sm">
+                    <span>*</span>
+                    <span>Submition</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="Overview px-4  mb-8">
-            <div className="OverviewChild1">
-              <h1 className="text-xl md:3xl font-sans  Grotesk py-4 flex items-center">
-                <span className="pr-2 text-red-900">
-                  <BsPatchQuestion />
-                </span>
-                What to know
-              </h1>
-              <p className="font-thin	">
-                Solutions provided are based mostly on problems on Leetcode and
-                Hacharank and those uploaded by users and also approved by
-                admins of this platform
-              </p>
-            </div>
-            <div className="OverviewChild1">
-              <h1 className="text-xl md:3xl font-sans Grotesk  py-4 flex items-center">
-                <span className="pr-2 text-purple-900 ">
-                  <BsCodeSlash />
-                </span>
-                Code Highlighter Used
-              </h1>
-              <p className="font-thin 	">
-                WE used Prism to highlight 99% of codes on this website
-                irrespective of the language
-              </p>
-            </div>
-            <div className="OverviewChild1">
-              <h1 className="text-xl md:3xl font-sans Grotesk  py-4 flex items-center">
-                <span className="pr-2 text-orange-900 ">
-                  <TbDetails />
-                </span>
-                More details{" "}
-              </h1>
-              <p className="font-thin flex	">Launched on 31st August 2022</p>
-            </div>
-            <div className="OverviewChild1">
-              <h1 className="text-xl md:3xl font-sans Grotesk  py-4 flex items-center">
-                <span className="pr-2 text-indigo-900 ">
-                  <DiMitlicence />
-                </span>
-                License
-              </h1>
-              <p className="font-thin flex 	items-center">
-                <span className="px-4">
-                  {" "}
-                  Licensed under the MIT License, Copyright © 2022.
-                </span>
-                <span className="py-4"> {<TopLogo css={"text-black "} />}</span>
-              </p>
+              <div className="border border-red-500 w-full md:w-6/12 h-56 mx-2 my-2"></div>
             </div>
           </div>
         </div>
@@ -225,4 +122,4 @@ const QuestionPage = ({}) => {
   );
 };
 
-export default QuestionPage;
+export default ProblemsPage;
