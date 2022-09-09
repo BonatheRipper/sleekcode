@@ -1,45 +1,109 @@
 import React from "react";
 import { useState } from "react";
 
-import Navbar from "../components/Navbar";
-import OverviewTable from "../components/OverviewTable";
-import OverViewTopText from "../components/OverViewTopText";
+import AceEditor from "react-ace";
+
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-csharp";
+import "ace-builds/src-noconflict/mode-golang";
+import "ace-builds/src-noconflict/mode-typescript";
+import "ace-builds/src-noconflict/mode-ruby";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/theme-tomorrow";
+import "ace-builds/src-noconflict/theme-terminal";
+import "ace-builds/src-noconflict/theme-solarized_dark";
+
 import SideBar from "../components/SideBar";
 import Sidebarnav1 from "../components/Sidebarnav1";
-import SolvedCircle from "../components/SolvedCircle";
-import { LangType1, LangType2 } from "../components/SolvedLangs";
-import { TbBrandJavascript, TbDetails } from "react-icons/tb";
+
 import { SiJava, SiVisualstudiocode } from "react-icons/si";
 import { TbCodeMinus } from "react-icons/tb";
 import { RiTimerLine } from "react-icons/ri";
-import { MdAccessTimeFilled, MdWorkspacesOutline } from "react-icons/md";
-import { FcIdea } from "react-icons/fc";
 import {
-  BsPatchQuestion,
-  BsLayoutTextSidebarReverse,
-  BsCheckCircleFill,
-} from "react-icons/bs";
+  MdAccessTimeFilled,
+  MdOutlineArrowForwardIos,
+  MdWorkspacesOutline,
+} from "react-icons/md";
+import { FcIdea } from "react-icons/fc";
+import { BsCheckCircle } from "react-icons/bs";
+
 import { useGlobalContext } from "../utils/GlobalContext";
 import TopLogo from "../components/TopLogo";
 import BottomQuestionNav from "../components/BottomQuestionNav";
 const ProblemsPage = () => {
   const { day, setNavcss, attheBottom } = useGlobalContext();
   const [navActive, setNavActive] = useState(false);
+  const [aceSettings, setAceSetthings] = useState({
+    mode: "javascript",
+    theme: "monokai",
+    font: "14",
+  });
+
   const [options, setOptions] = useState("description");
 
-  const handleOptionsClick = (e) => {
-    setOptions(e.target.id);
+  const handleLanguage = (e) => {
+    if (e.target.value) {
+      setAceSetthings((prev) => ({ ...prev, mode: e.target.value }));
+    }
   };
+
+  const handleTheme = (e) => {
+    if (e.target.value) {
+      setAceSetthings((prev) => ({ ...prev, theme: e.target.value }));
+    }
+  };
+  const handleFontSize = (e) => {
+    if (e.target.value) {
+      setAceSetthings((prev) => ({ ...prev, font: Number(e.target.value) }));
+    }
+  };
+  function onChange(newValue) {}
+  console.log(aceSettings);
+
+  const programmingLanguages = [
+    { name: "Select Language", value: "" },
+    { name: "Javascript", value: "javascript" },
+    { name: "Java", value: "java" },
+    { name: "Python", value: "python" },
+    { name: "Typescript", value: "typescript" },
+    { name: "Golang", value: "golang" },
+    { name: "Ruby", value: "ruby" },
+    { name: "C#", value: "csharp" },
+  ];
+  const programmingThemes = [
+    { name: "Select Theme", value: "" },
+    { name: "Monokai", value: "monokai" },
+    { name: "Github", value: "github" },
+    { name: "Tomorrow", value: "tomorrow" },
+    { name: "Terminal", value: "terminal" },
+    { name: "Solarized Dark", value: "solarized_dark" },
+  ];
+
+  const programmingFontSize = [
+    { name: "Select Font Size", value: "" },
+    { name: "14", value: 14 },
+    { name: "16", value: 16 },
+    { name: "18", value: 18 },
+    { name: "20", value: 20 },
+    { name: "24", value: 24 },
+    { name: "28", value: 28 },
+    { name: "32", value: 32 },
+    { name: "40", value: 40 },
+  ];
   const optionsSecondaryStyle = (item) => {
     return `${
       options === item
         ? `${
             day
-              ? "border-t border-x  border-gray-300  "
+              ? "border-t border-x  border-gray-400  "
               : "bg-gray-900 text-gray-300"
           } `
         : ""
-    }`;
+    } flex rounded-t-sm flex-col justify-center items-center py-2  w-4/12 mx-1 text-sm`;
   };
   return (
     <div
@@ -111,8 +175,8 @@ const ProblemsPage = () => {
                 </span>
               </div>
             </div>
-            <div className="container flex flex-col md:flex-row justify-center items-center my-6 w-full">
-              <div className="border-b w-full md:w-6/12   my-2">
+            <div className="container flex items-stretch flex-col md:flex-row justify-center items-start my-6 w-full">
+              <div className="shadow  w-full md:w-6/12   my-2">
                 <div
                   className={`options ${
                     day ? " border-gray-300 " : "border-gray-600"
@@ -123,7 +187,7 @@ const ProblemsPage = () => {
                     id="description"
                     className={`select ${optionsSecondaryStyle(
                       "description"
-                    )} flex rounded-t-sm    flex-col justify-center items-center  py-2   w-4/12 mx-1 text-sm`}
+                    )} `}
                   >
                     <span className="px-2  text-xl text-purple-800 ">
                       <TbCodeMinus />
@@ -133,9 +197,7 @@ const ProblemsPage = () => {
                   <div
                     id="solution"
                     onClick={(e) => setOptions("solution")}
-                    className={`select  ${optionsSecondaryStyle(
-                      "solution"
-                    )}  flex rounded-t-sm   flex-col justify-center items-center py-2  w-4/12 mx-1 text-sm`}
+                    className={`select  ${optionsSecondaryStyle("solution")}  `}
                   >
                     <span className="px-2  text-lg  ">
                       <FcIdea />
@@ -147,7 +209,7 @@ const ProblemsPage = () => {
                     onClick={(e) => setOptions("submissions")}
                     className={`select ${optionsSecondaryStyle(
                       "submissions"
-                    )} flex rounded-t-sm   flex-col justify-center items-center py-2   w-4/12 mx-1 text-sm`}
+                    )} `}
                   >
                     <span className="px-2  text-lg text-blue-800 ">
                       <SiVisualstudiocode />
@@ -157,7 +219,7 @@ const ProblemsPage = () => {
                 </div>
                 <div className="questionBox px-4 my-4 text-sm 	">
                   {" "}
-                  <p className="leading-loose text-gray-600 font-thin">
+                  <p className="leading-loose  font-thin">
                     You are given two strings s and p where p is a subsequence
                     of s. You are also given a distinct 0-indexed integer array
                     removable containing a subset of indices of s (s is also
@@ -174,7 +236,101 @@ const ProblemsPage = () => {
                   </p>
                 </div>
               </div>
-              <div className="border border-red-500 w-full md:w-6/12 h-56  my-2"></div>
+              <div className="   shadow-xl w-full md:w-6/12 flex flex-col justify-between items-center  my-2">
+                <div className="aceOptions flex  flex-row w-full ">
+                  <div
+                    className={` border h-12 w-4/12 ${
+                      !day ? "border-gray-600 " : "border-gray-300  "
+                    } `}
+                  >
+                    <select
+                      onChange={(e) => handleLanguage(e)}
+                      className={`w-full h-full px-2 ${
+                        !day ? "bg-black" : ""
+                      } `}
+                    >
+                      {programmingLanguages.map((item) => (
+                        <option key={item.name} value={item.value}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div
+                    className={` border h-12 w-4/12 ${
+                      !day ? "border-gray-600 " : "border-gray-300  "
+                    }`}
+                  >
+                    {" "}
+                    <select
+                      onChange={(e) => handleTheme(e)}
+                      className={`w-full h-full px-2 ${!day ? "bg-black" : ""}`}
+                    >
+                      {programmingThemes.map((item) => (
+                        <option key={item.name} value={item.value}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div
+                    className={` border h-12 w-4/12 ${
+                      !day ? "border-gray-600 " : "border-gray-300  "
+                    }`}
+                  >
+                    {" "}
+                    <select
+                      onChange={(e) => handleFontSize(e)}
+                      className={`w-full h-full px-2 ${!day ? "bg-black" : ""}`}
+                    >
+                      {programmingFontSize.map((item) => (
+                        <option key={item.name} value={item.value}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div id="aceEditor" className="aceEditor py-4 bg-black w-full">
+                  <AceEditor
+                    mode={aceSettings.mode}
+                    theme={aceSettings.theme}
+                    fontSize={aceSettings.font}
+                    placeholder=".............Type Code here.............."
+                    width="100%"
+                    value={``}
+                    onChange={onChange}
+                    showPrintMargin={true}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    name="aceEditor"
+                    editorProps={{ $blockScrolling: true }}
+                    setOptions={{
+                      enableBasicAutocompletion: true,
+                      enableSnippets: true,
+                      showLineNumbers: true,
+                    }}
+                  />
+                </div>
+                <div className="aceBtns flex flex-row justify-between items-center w-full px-6 py-2">
+                  <button
+                    className={`flex flex-row py-2 px-8 w-6/12 mx-1 border rounded-xl border-gray-700 justify-between items-center`}
+                  >
+                    <span>Submit</span>
+                    <span className="">
+                      <BsCheckCircle />
+                    </span>
+                  </button>
+                  <button
+                    className={`flex flex-row py-2 px-8 w-6/12 border mx-1 rounded-xl bg-cyan-500 text-white justify-between items-center`}
+                  >
+                    <span>Run</span>
+                    <span className="">
+                      <MdOutlineArrowForwardIos />
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
