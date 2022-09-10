@@ -209,3 +209,6 @@ option:active {
   box-shadow: none !important;
   outline: none;
 }
+pre {
+  border: none !important;
+}

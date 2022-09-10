@@ -7,6 +7,11 @@ import {
   programmingFontSize,
 } from "../seed/demoData";
 import AceEditor from "react-ace";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  oneLight,
+  xonokai,
+} from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-java";
@@ -42,7 +47,37 @@ import BottomQuestionNav from "../components/BottomQuestionNav";
 const ProblemsPage = () => {
   const { day, setNavcss, attheBottom } = useGlobalContext();
   const [navBack, setNavBack] = useState(false);
+  const [highlightedLang, setHighlightedLang] = useState({
+    name: "java",
+    code: `
+    public Board() {
+        
+        initBoard();
+    }
+    
+    private void initBoard() {
 
+        addKeyListener(new TAdapter());
+        setBackground(Color.black);
+        setFocusable(true);
+
+        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        loadImages();
+        initGame();
+    }
+
+    private void loadImages() {
+
+        ImageIcon iid = new ImageIcon("src/resources/dot.png");
+        ball = iid.getImage();
+
+        ImageIcon iia = new ImageIcon("src/resources/apple.png");
+        apple = iia.getImage();
+
+        ImageIcon iih = new ImageIcon("src/resources/head.png");
+        head = iih.getImage();
+    }`,
+  });
   const [navActive, setNavActive] = useState(false);
   const [aceSettings, setAceSetthings] = useState({
     mode: "javascript",
@@ -80,6 +115,7 @@ const ProblemsPage = () => {
       setAceSetthings((prev) => ({ ...prev, font: Number(e.target.value) }));
     }
   };
+  const questionsSolutions = [{ java: "" }];
   function onChange(newValue) {}
 
   const optionsSecondaryStyle = (isTrue) => {
@@ -105,6 +141,7 @@ const ProblemsPage = () => {
     }
     setOptions(newoptions);
   };
+  console.log(highlightedLang);
   return (
     <div
       className={` main relative w-full ${
@@ -123,57 +160,6 @@ const ProblemsPage = () => {
             <div className="question flex flex-row text-2xl md:text-3xl ">
               <span className="">1. </span>
               <span className="  mx-2">Two Sum </span>
-            </div>
-            <div
-              className={`${
-                !day ? "text-green-800" : "text-green-600"
-              } text-gray-100  rounded md:px-8 px-6 my-1 md:py-2  py-1 font-extrabold difficulty`}
-            >
-              <h5 className="mx-2"> Easy</h5>
-            </div>
-            <div
-              className={`${
-                !day ? "text-gray-300" : "text-white"
-              }  flex flex-row rounded md:px-8  my-2 md:py-2  py-1 text-xs difficulty`}
-            >
-              <span className="px-8 border bg-cyan-800 mx-0 rounded-xl ">
-                {" "}
-                Array
-              </span>
-              <span className="px-8 border bg-gray-800 mx-0  rounded-xl ">
-                {" "}
-                Hash Table
-              </span>
-            </div>
-            <div
-              className={`${
-                !day ? "text-gray-300" : ""
-              }  flex flex-col  rounded md:px-8  my-2 md:py-2  py-1 text-xs difficulty`}
-            >
-              <div className="flex flex-row px-2 items-center">
-                {" "}
-                <span className=" text-xl text-green-700">
-                  {" "}
-                  <RiTimerLine />
-                </span>
-                <span className=" text-base px-2 font-bold"> Time </span>
-                <span className="  px-1 text-xl font-thin tangerine">
-                  {" "}
-                  O(n){" "}
-                </span>
-              </div>
-              <div className="flex flex-row px-2 items-center">
-                {" "}
-                <span className=" text-xl text-green-700">
-                  {" "}
-                  <MdWorkspacesOutline />
-                </span>
-                <span className=" text-base px-2 font-bold"> Space </span>
-                <span className="  px-1 text-xl font-thin tangerine">
-                  {" "}
-                  O(n){" "}
-                </span>
-              </div>
             </div>
             <div
               className={`container border ${
@@ -222,8 +208,64 @@ const ProblemsPage = () => {
                   </div>
                 </div>
                 {Description && (
-                  <div className="questionDescriptionBox px-4 my-4 text-sm 	">
-                    {" "}
+                  <div className="questionDescriptionBox px-4 my-4 text-sm flex flex-col 	">
+                    <div
+                      className={`${
+                        !day ? "text-green-800" : "text-green-600"
+                      } text-gray-100  rounded md:px-8 px-6 my-1 md:py-2  py-1 font-extrabold difficulty`}
+                    >
+                      <h5 className="mx-2"> Easy</h5>
+                    </div>
+                    <div
+                      className={`${
+                        !day ? "text-gray-300" : "text-white"
+                      }  flex flex-row rounded md:px-8  my-2 md:py-2  py-1 text-xs difficulty`}
+                    >
+                      <span className="px-8 border bg-cyan-800 mx-0 rounded-xl ">
+                        {" "}
+                        Array
+                      </span>
+                      <span className="px-8 border bg-gray-800 mx-0  rounded-xl ">
+                        {" "}
+                        Hash Table
+                      </span>
+                    </div>
+                    <div
+                      className={`${
+                        !day ? "text-gray-300" : ""
+                      }  flex flex-col  rounded md:px-8  my-2 md:py-2  py-1 text-xs difficulty`}
+                    >
+                      <div className="flex flex-row px-2 items-center">
+                        {" "}
+                        <span className=" text-xl text-red-400">
+                          {" "}
+                          <RiTimerLine />
+                        </span>
+                        <span className=" text-base px-2 font-bold">
+                          {" "}
+                          Time{" "}
+                        </span>
+                        <span className="  px-1 text-xl font-thin tangerine">
+                          {" "}
+                          O(n){" "}
+                        </span>
+                      </div>
+                      <div className="flex flex-row px-2 items-center">
+                        {" "}
+                        <span className=" text-xl text-yellow-700">
+                          {" "}
+                          <MdWorkspacesOutline />
+                        </span>
+                        <span className=" text-base px-2 font-bold">
+                          {" "}
+                          Space{" "}
+                        </span>
+                        <span className="  px-1 text-xl font-thin tangerine">
+                          {" "}
+                          O(n){" "}
+                        </span>
+                      </div>
+                    </div>{" "}
                     <p className="leading-loose  font-thin">
                       You are given two strings s and p where p is a subsequence
                       of s. You are also given a distinct 0-indexed integer
@@ -242,20 +284,37 @@ const ProblemsPage = () => {
                   </div>
                 )}
                 {Solution && (
-                  <div className="questionDescriptionBox   flex flex-col text-sm  h-40 w-full border border-black	">
+                  <div className="questionDescriptionBox   flex flex-col text-sm   w-full	">
                     {" "}
                     <select
-                      onChange={(e) => handleLanguage(e)}
+                      onChange={(e) => console.log(e.target.key)}
                       className={`w-full py-2  px-2 ${
-                        !day ? "bg-black border-gray-600" : ""
+                        !day ? "bg-transparent  border-gray-600" : ""
                       }  md:text-base text-xs border `}
                     >
                       {highlighterLanguages.map((item) => (
-                        <option key={item.name} value={item.value}>
+                        <option
+                          data-code={item.code}
+                          key={item.name}
+                          value={item.value}
+                        >
                           {item.name}
                         </option>
                       ))}
                     </select>
+                    <div
+                      className={`border w-full ${
+                        !day ? "border-gray-700" : "border-gray-200 shadow"
+                      }`}
+                    >
+                      {" "}
+                      <SyntaxHighlighter
+                        language={highlightedLang.name}
+                        style={day ? oneLight : xonokai}
+                      >
+                        {`${highlightedLang.code}`}
+                      </SyntaxHighlighter>
+                    </div>
                   </div>
                 )}
                 {Submissions && (
@@ -276,7 +335,7 @@ const ProblemsPage = () => {
                     <select
                       onChange={(e) => handleLanguage(e)}
                       className={`w-full h-full px-2 ${
-                        !day ? "bg-black" : ""
+                        !day ? "bg-transparent  border-gray-600" : ""
                       }  md:text-base text-xs`}
                     >
                       {programmingLanguages.map((item) => (
@@ -295,7 +354,7 @@ const ProblemsPage = () => {
                     <select
                       onChange={(e) => handleTheme(e)}
                       className={`w-full h-full px-2 ${
-                        !day ? "bg-black" : ""
+                        !day ? "bg-transparent  border-gray-600" : ""
                       }  md:text-base text-xs`}
                     >
                       {programmingThemes.map((item) => (
@@ -314,7 +373,7 @@ const ProblemsPage = () => {
                     <select
                       onChange={(e) => handleFontSize(e)}
                       className={`w-full h-full px-2 ${
-                        !day ? "bg-black" : ""
+                        !day ? "bg-transparent  border-gray-600" : ""
                       } md:text-base text-xs`}
                     >
                       {programmingFontSize.map((item) => (

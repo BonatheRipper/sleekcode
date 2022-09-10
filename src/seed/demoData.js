@@ -129,7 +129,30 @@ export const programmingLanguages = [
 ];
 export const highlighterLanguages = [
   { name: "Select Language", value: "" },
-  { name: "Javascript", value: "javascript" },
+  {
+    name: "Javascript",
+    value: "javascript",
+    code: `const [options, setOptions] = useState({
+    Description: true,
+    Solution: false,
+    Submissions: false,
+  });
+  const { Description, Submissions, Solution } = options;
+  useEffect(() => {
+    if (day) {
+      setNavcss("bg-white");
+    }
+    if (!day) {
+      setNavcss("bg-gray-900");
+    }
+  }, [day, navBack]);
+
+  const handleLanguage = (e) => {
+    if (e.target.value) {
+      setAceSetthings((prev) => ({ ...prev, mode: e.target.value }));
+    }
+  };`,
+  },
   { name: "Java", value: "java" },
   { name: "Python", value: "python" },
   { name: "Typescript", value: "typescript" },
