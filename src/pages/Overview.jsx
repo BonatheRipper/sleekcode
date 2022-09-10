@@ -23,22 +23,8 @@ import TopLogo from "../components/TopLogo";
 import BottomQuestionNav from "../components/BottomQuestionNav";
 const Overview = ({}) => {
   const { day, setNavcss, attheBottom } = useGlobalContext();
-  const [navActive, navBack, setNavActive] = useState(false);
-
-  //Obsolete counter
-  //   const [counter1, setCounter1] = useState(0);
-  //   const [counter2, setCounter2] = useState(0);
-  //   const [counter3, setCounter3] = useState(0);
-  //   const [counter4, setCounter4] = useState(0);
-  //   const [counter5, setCounter5] = useState(0);
-  //   const counters = {
-  //     counter1: 0,
-  //     counter2: 0,
-  //     counter3: 0,
-  //     counter4: 0,
-  //     counter5: 0,
-  //   };
-  //Obsolete counter
+  const [navActive, setNavActive] = useState(false);
+  const [navBack, setNavBack] = useState(false);
 
   const [counters, setCounters] = useState({
     counter1: 0,

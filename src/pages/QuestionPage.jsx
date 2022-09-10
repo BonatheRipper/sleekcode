@@ -1,6 +1,10 @@
 import React from "react";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import {
+  programmingLanguages,
+  programmingThemes,
+  programmingFontSize,
+} from "../seed/demoData";
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-javascript";
@@ -36,12 +40,23 @@ import TopLogo from "../components/TopLogo";
 import BottomQuestionNav from "../components/BottomQuestionNav";
 const ProblemsPage = () => {
   const { day, setNavcss, attheBottom } = useGlobalContext();
+  const [navBack, setNavBack] = useState(false);
+
   const [navActive, setNavActive] = useState(false);
   const [aceSettings, setAceSetthings] = useState({
     mode: "javascript",
     theme: "monokai",
     font: "14",
   });
+
+  useEffect(() => {
+    if (day) {
+      setNavcss("bg-white");
+    }
+    if (!day) {
+      setNavcss("bg-gray-900");
+    }
+  }, [day, navBack]);
 
   const [options, setOptions] = useState("description");
 
@@ -64,36 +79,6 @@ const ProblemsPage = () => {
   function onChange(newValue) {}
   console.log(aceSettings);
 
-  const programmingLanguages = [
-    { name: "Select Language", value: "" },
-    { name: "Javascript", value: "javascript" },
-    { name: "Java", value: "java" },
-    { name: "Python", value: "python" },
-    { name: "Typescript", value: "typescript" },
-    { name: "Golang", value: "golang" },
-    { name: "Ruby", value: "ruby" },
-    { name: "C#", value: "csharp" },
-  ];
-  const programmingThemes = [
-    { name: "Select Theme", value: "" },
-    { name: "Monokai", value: "monokai" },
-    { name: "Github", value: "github" },
-    { name: "Tomorrow", value: "tomorrow" },
-    { name: "Terminal", value: "terminal" },
-    { name: "Solarized Dark", value: "solarized_dark" },
-  ];
-
-  const programmingFontSize = [
-    { name: "Select Font Size", value: "" },
-    { name: "14", value: 14 },
-    { name: "16", value: 16 },
-    { name: "18", value: 18 },
-    { name: "20", value: 20 },
-    { name: "24", value: 24 },
-    { name: "28", value: 28 },
-    { name: "32", value: 32 },
-    { name: "40", value: 40 },
-  ];
   const optionsSecondaryStyle = (item) => {
     return `${
       options === item
@@ -104,6 +89,9 @@ const ProblemsPage = () => {
           } `
         : ""
     } flex rounded-t-sm flex-col justify-center items-center py-2  w-4/12 mx-1 text-sm`;
+  };
+  const handleOptionscclick = (keyX) => {
+    setOptions(keyX);
   };
   return (
     <div
@@ -175,15 +163,23 @@ const ProblemsPage = () => {
                 </span>
               </div>
             </div>
-            <div className="container flex items-stretch flex-col md:flex-row justify-center items-start my-6 w-full">
-              <div className="shadow  w-full md:w-6/12   my-2">
+            <div
+              className={`container border ${
+                !day ? "border-gray-600 " : "border-gray-300 "
+              } flex items-stretch flex-col md:flex-row justify-center  my-6 w-full`}
+            >
+              <div
+                className={`shadow border w-full md:w-6/12   my-2 ${
+                  !day ? "border-gray-600 " : "border-gray-300 "
+                }`}
+              >
                 <div
                   className={`options ${
                     day ? " border-gray-300 " : "border-gray-600"
                   } flex flex-row justify-between rounded-t-full items-end border-b`}
                 >
                   <div
-                    onClick={(e) => setOptions("description")}
+                    onClick={(e) => handleOptionscclick("description")}
                     id="description"
                     className={`select ${optionsSecondaryStyle(
                       "description"
@@ -196,7 +192,7 @@ const ProblemsPage = () => {
                   </div>
                   <div
                     id="solution"
-                    onClick={(e) => setOptions("solution")}
+                    onClick={(e) => handleOptionscclick("solution")}
                     className={`select  ${optionsSecondaryStyle("solution")}  `}
                   >
                     <span className="px-2  text-lg  ">
@@ -206,7 +202,7 @@ const ProblemsPage = () => {
                   </div>
                   <div
                     id="submissions"
-                    onClick={(e) => setOptions("submissions")}
+                    onClick={(e) => handleOptionscclick("submissions")}
                     className={`select ${optionsSecondaryStyle(
                       "submissions"
                     )} `}
@@ -236,7 +232,11 @@ const ProblemsPage = () => {
                   </p>
                 </div>
               </div>
-              <div className="   shadow-xl w-full md:w-6/12 flex flex-col justify-between items-center  my-2">
+              <div
+                className={` border ${
+                  !day ? "border-gray-600 " : "border-gray-300 "
+                }  shadow w-full md:w-6/12 flex flex-col justify-between items-center  my-2`}
+              >
                 <div className="aceOptions flex  flex-row w-full ">
                   <div
                     className={` border h-12 w-4/12 ${
@@ -247,7 +247,7 @@ const ProblemsPage = () => {
                       onChange={(e) => handleLanguage(e)}
                       className={`w-full h-full px-2 ${
                         !day ? "bg-black" : ""
-                      } `}
+                      }  md:text-base text-xs`}
                     >
                       {programmingLanguages.map((item) => (
                         <option key={item.name} value={item.value}>
@@ -264,7 +264,9 @@ const ProblemsPage = () => {
                     {" "}
                     <select
                       onChange={(e) => handleTheme(e)}
-                      className={`w-full h-full px-2 ${!day ? "bg-black" : ""}`}
+                      className={`w-full h-full px-2 ${
+                        !day ? "bg-black" : ""
+                      }  md:text-base text-xs`}
                     >
                       {programmingThemes.map((item) => (
                         <option key={item.name} value={item.value}>
@@ -281,7 +283,9 @@ const ProblemsPage = () => {
                     {" "}
                     <select
                       onChange={(e) => handleFontSize(e)}
-                      className={`w-full h-full px-2 ${!day ? "bg-black" : ""}`}
+                      className={`w-full h-full px-2 ${
+                        !day ? "bg-black" : ""
+                      } md:text-base text-xs`}
                     >
                       {programmingFontSize.map((item) => (
                         <option key={item.name} value={item.value}>
