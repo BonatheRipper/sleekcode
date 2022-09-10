@@ -10,6 +10,8 @@
   -moz-transition: 0.2s ease-in-out;
   -o-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
+
+  outline: 0;
 }
 html,
 body,
@@ -194,4 +196,16 @@ body,
 }
 .bilbo {
   font-family: "Bilbo Swash Caps", cursive;
+}
+select:focus {
+  box-shadow: none;
+  outline: none;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+option:focus,
+option:active {
+  box-shadow: none !important;
+  outline: none;
 }

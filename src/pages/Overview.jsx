@@ -25,7 +25,6 @@ const Overview = ({}) => {
   const { day, setNavcss, attheBottom } = useGlobalContext();
   const [navActive, setNavActive] = useState(false);
   const [navBack, setNavBack] = useState(false);
-
   const [counters, setCounters] = useState({
     counter1: 0,
     counter2: 0,

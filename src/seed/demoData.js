@@ -127,6 +127,16 @@ export const programmingLanguages = [
   { name: "Ruby", value: "ruby" },
   { name: "C#", value: "csharp" },
 ];
+export const highlighterLanguages = [
+  { name: "Select Language", value: "" },
+  { name: "Javascript", value: "javascript" },
+  { name: "Java", value: "java" },
+  { name: "Python", value: "python" },
+  { name: "Typescript", value: "typescript" },
+  { name: "Golang", value: "golang" },
+  { name: "Ruby", value: "ruby" },
+  { name: "C#", value: "csharp" },
+];
 export const programmingThemes = [
   { name: "Select Theme", value: "" },
   { name: "Monokai", value: "monokai" },

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import {
   programmingLanguages,
   programmingThemes,
+  highlighterLanguages,
   programmingFontSize,
 } from "../seed/demoData";
 import AceEditor from "react-ace";
@@ -48,7 +49,12 @@ const ProblemsPage = () => {
     theme: "monokai",
     font: "14",
   });
-
+  const [options, setOptions] = useState({
+    Description: true,
+    Solution: false,
+    Submissions: false,
+  });
+  const { Description, Submissions, Solution } = options;
   useEffect(() => {
     if (day) {
       setNavcss("bg-white");
@@ -57,8 +63,6 @@ const ProblemsPage = () => {
       setNavcss("bg-gray-900");
     }
   }, [day, navBack]);
-
-  const [options, setOptions] = useState("description");
 
   const handleLanguage = (e) => {
     if (e.target.value) {
@@ -77,11 +81,10 @@ const ProblemsPage = () => {
     }
   };
   function onChange(newValue) {}
-  console.log(aceSettings);
 
-  const optionsSecondaryStyle = (item) => {
+  const optionsSecondaryStyle = (isTrue) => {
     return `${
-      options === item
+      isTrue
         ? `${
             day
               ? "border-t border-x  border-gray-400  "
@@ -90,8 +93,17 @@ const ProblemsPage = () => {
         : ""
     } flex rounded-t-sm flex-col justify-center items-center py-2  w-4/12 mx-1 text-sm`;
   };
-  const handleOptionscclick = (keyX) => {
-    setOptions(keyX);
+  const handleOptionscclick = (optionsKey) => {
+    // setOptions((prev) => ({ ...prev, [keyX]: true }));
+    let newoptions = {};
+    for (const key in options) {
+      if (key === optionsKey) {
+        newoptions[key] = true;
+      } else {
+        newoptions[key] = false;
+      }
+    }
+    setOptions(newoptions);
   };
   return (
     <div
@@ -179,11 +191,9 @@ const ProblemsPage = () => {
                   } flex flex-row justify-between rounded-t-full items-end border-b`}
                 >
                   <div
-                    onClick={(e) => handleOptionscclick("description")}
+                    onClick={(e) => handleOptionscclick("Description")}
                     id="description"
-                    className={`select ${optionsSecondaryStyle(
-                      "description"
-                    )} `}
+                    className={`select ${optionsSecondaryStyle(Description)} `}
                   >
                     <span className="px-2  text-xl text-purple-800 ">
                       <TbCodeMinus />
@@ -192,8 +202,8 @@ const ProblemsPage = () => {
                   </div>
                   <div
                     id="solution"
-                    onClick={(e) => handleOptionscclick("solution")}
-                    className={`select  ${optionsSecondaryStyle("solution")}  `}
+                    onClick={(e) => handleOptionscclick("Solution")}
+                    className={`select  ${optionsSecondaryStyle(Solution)}  `}
                   >
                     <span className="px-2  text-lg  ">
                       <FcIdea />
@@ -202,10 +212,8 @@ const ProblemsPage = () => {
                   </div>
                   <div
                     id="submissions"
-                    onClick={(e) => handleOptionscclick("submissions")}
-                    className={`select ${optionsSecondaryStyle(
-                      "submissions"
-                    )} `}
+                    onClick={(e) => handleOptionscclick("Submissions")}
+                    className={`select ${optionsSecondaryStyle(Submissions)} `}
                   >
                     <span className="px-2  text-lg text-blue-800 ">
                       <SiVisualstudiocode />
@@ -213,24 +221,46 @@ const ProblemsPage = () => {
                     <span>Submissions</span>
                   </div>
                 </div>
-                <div className="questionBox px-4 my-4 text-sm 	">
-                  {" "}
-                  <p className="leading-loose  font-thin">
-                    You are given two strings s and p where p is a subsequence
-                    of s. You are also given a distinct 0-indexed integer array
-                    removable containing a subset of indices of s (s is also
-                    0-indexed). You want to choose an integer k such that, after
-                    removing k characters from s using the first k indices in
-                    removable, p is still a subsequence of s. More formally, you
-                    will mark the character at then remove all marked characters
-                    and check if p is still a subsequence. Return the maximum k
-                    you can choose such that p is still a subsequence of s after
-                    the removals. A subsequence of a string is a new string
-                    generated from the original string with some characters (can
-                    be none) deleted without changing the relative order of the
-                    remaining characters.
-                  </p>
-                </div>
+                {Description && (
+                  <div className="questionDescriptionBox px-4 my-4 text-sm 	">
+                    {" "}
+                    <p className="leading-loose  font-thin">
+                      You are given two strings s and p where p is a subsequence
+                      of s. You are also given a distinct 0-indexed integer
+                      array removable containing a subset of indices of s (s is
+                      also 0-indexed). You want to choose an integer k such
+                      that, after removing k characters from s using the first k
+                      indices in removable, p is still a subsequence of s. More
+                      formally, you will mark the character at then remove all
+                      marked characters and check if p is still a subsequence.
+                      Return the maximum k you can choose such that p is still a
+                      subsequence of s after the removals. A subsequence of a
+                      string is a new string generated from the original string
+                      with some characters (can be none) deleted without
+                      changing the relative order of the remaining characters.
+                    </p>
+                  </div>
+                )}
+                {Solution && (
+                  <div className="questionDescriptionBox   flex flex-col text-sm  h-40 w-full border border-black	">
+                    {" "}
+                    <select
+                      onChange={(e) => handleLanguage(e)}
+                      className={`w-full py-2  px-2 ${
+                        !day ? "bg-black border-gray-600" : ""
+                      }  md:text-base text-xs border `}
+                    >
+                      {highlighterLanguages.map((item) => (
+                        <option key={item.name} value={item.value}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                {Submissions && (
+                  <div className="questionDescriptionBox px-4 my-4 text-sm  h-40 w-full bg-red-800	"></div>
+                )}
               </div>
               <div
                 className={` border ${
